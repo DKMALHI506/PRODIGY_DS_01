@@ -1,0 +1,26 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load your dataset
+df = pd.read_csv('your_file.csv', delimiter=';')
+
+# Visualize Categorical Variables
+plt.figure(figsize=(14, 8))
+for i, cat_var in enumerate(['marital', 'job', 'education', 'default', 'housing', 'loan', 'contact', 'month', 'poutcome', 'y']):
+    plt.subplot(2, 5, i+1)
+    sns.countplot(x=cat_var, data=df)
+    plt.title(f'Distribution of {cat_var}')
+plt.tight_layout()
+plt.show()
+
+# Visualize Continuous Variables
+plt.figure(figsize=(14, 8))
+for i, cont_var in enumerate(['age', 'balance', 'day', 'duration', 'campaign', 'pdays', 'previous']):
+    plt.subplot(2, 4, i+1)
+    plt.hist(df[cont_var], bins=20, edgecolor='black')
+    plt.title(f'Distribution of {cont_var}')
+    plt.xlabel(cont_var)
+    plt.ylabel('Count')
+plt.tight_layout()
+plt.show()
